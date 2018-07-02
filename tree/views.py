@@ -4,10 +4,10 @@ from django.utils.decorators import method_decorator
 from django.views import View
 from .models import (
     BinaryTree,
-    BinaryPointsHistory,
 )
 from settings.models import Setting
 import json
+from .utils import SetPoints
 
 
 def is_valid_api_key(api_key):
@@ -33,7 +33,7 @@ def get_parameters(request):
 
 def bad_request():
     context = {
-        'status': 0,
+        'status': False,
         'message': 'Не верный формат запроса',
     }
     return JsonResponse(context)
@@ -53,7 +53,7 @@ class GetTreeAPIView(View):
         context = {}
 
         if not is_valid_api_key(api_key):
-            context['status'] = 0
+            context['status'] = False
             context['message'] = 'Не верный API токен'
             return JsonResponse(context)
 
@@ -66,7 +66,7 @@ class GetTreeAPIView(View):
             try:
                 node = BinaryTree.objects.get(user=username)
             except BinaryTree.DoesNotExist:
-                context['status'] = 0
+                context['status'] = False
                 context['message'] = 'Пользователя {} не существует'.format(username)
                 return JsonResponse(context)
         else:
@@ -80,6 +80,7 @@ class GetTreeAPIView(View):
                 'id': i.id,
                 'user': i.user,
                 'parent': str(i.parent) if i.parent else False,
+                'level': i.level,
                 'left_node': i.left_node if i.left_node else False,
                 'right_node': i.right_node if i.right_node else False,
                 'left_points': i.left_points,
@@ -88,7 +89,7 @@ class GetTreeAPIView(View):
                 'created': i.created,
             })
 
-        context['status'] = 1
+        context['status'] = True
         context['tree'] = tree
 
         return JsonResponse(context)
@@ -104,13 +105,17 @@ class SetUserInBinaryAPIView(View):
     leg:
         left_node - Поставить пользователя в левую ногу
         right_node - Поставить пользователя в правую ногу
+    username:
+        string - Имя пользователя (уникальное)
+    points:
+        int - Сумма балов для присвоения по структуре вверх
     """
 
     def post(self, request, api_key):
         context = {}
 
         if not is_valid_api_key(api_key):
-            context['status'] = 0
+            context['status'] = False
             context['message'] = 'Не верный API токен'
             return JsonResponse(context)
 
@@ -118,9 +123,59 @@ class SetUserInBinaryAPIView(View):
         if not parameters:
             return bad_request()
 
-        print('-'*80)
-        print(parameters)
+        new_user_name = parameters.get('username')
+        points = parameters.get('points')
+        leg = parameters.get('leg')
 
-        context['status'] = 1
+        if (
+                not parameters.get('parent') or
+                not leg or
+                leg not in ['left_node', 'right_node'] or
+                not new_user_name or
+                not points
+        ):
+            return bad_request()
+
+        if isinstance(points, int) and points > 0:
+            pass
+        else:
+            context['status'] = False
+            context['message'] = 'Параметр points должен быть целым положительным числом'
+            return JsonResponse(context)
+
+        if BinaryTree.objects.filter(user=new_user_name).exists():
+            context['status'] = False
+            context['message'] = 'Пользователь {} уже существует'.format(new_user_name)
+            return JsonResponse(context)
+
+        username = parameters.get('parent')
+        if username:
+            try:
+                node = BinaryTree.objects.get(user=username)
+            except BinaryTree.DoesNotExist:
+                context['status'] = False
+                context['message'] = 'Родителя {} не существует'.format(username)
+                return JsonResponse(context)
+        else:
+            return bad_request()
+
+        if getattr(node, leg):
+            context['status'] = False
+            context['message'] = 'У пользователя {} место {} занято'.format(username, leg.split('_')[0])
+            return JsonResponse(context)
+
+        new_node = BinaryTree(
+            user=new_user_name,
+            parent=node,
+        )
+        new_node.save()
+        setattr(node, leg, new_node.pk)
+        node.save(update_fields=(leg,))
+
+        set_points = SetPoints(new_node, points)
+        set_points.set_points()
+
+        context['status'] = True
+        context['message'] = 'Пользователь {} успешно добавлен в дерево'.format(new_user_name)
 
         return JsonResponse(context)

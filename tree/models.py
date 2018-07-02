@@ -43,9 +43,13 @@ class BinaryTree(MPTTModel):
 class Reason(models.Model):
     """
     Основание для начисления или списания баллов
+    Константы:
+        1101 - Начисление баллов при регистрации/апгрейде пользователя в бинарном дереве
+        1102 - Списание баллов на основании премии
     """
     title = models.CharField(max_length=250, verbose_name='Заголовок')
     description = models.TextField(verbose_name='Описание')
+    code = models.PositiveSmallIntegerField()
 
     class Meta:
         verbose_name = 'Основание для начисления или списания баллов'
@@ -60,8 +64,8 @@ class BinaryPointsHistory(models.Model):
     История начисления и списания баллов
     """
     tree_node = models.ForeignKey(BinaryTree, verbose_name='Пользователь', on_delete=models.SET_NULL, blank=True, null=True)
-    left_points = models.IntegerField(verbose_name='Баллы')
-    right_points = models.IntegerField(verbose_name='Баллы')
+    left_points = models.IntegerField(verbose_name='Баллы', blank=True, null=True)
+    right_points = models.IntegerField(verbose_name='Баллы', blank=True, null=True)
     reason = models.ForeignKey(Reason, on_delete=models.SET_NULL, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True, auto_now=False, verbose_name='Дата создания')
 
