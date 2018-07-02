@@ -72,8 +72,24 @@ class GetTreeAPIView(View):
         else:
             return bad_request()
 
+        tree = list()
+        nodes = node.get_descendants(include_self=True)
+
+        for i in nodes:
+            tree.append({
+                'id': i.id,
+                'user': i.user,
+                'parent': str(i.parent) if i.parent else False,
+                'left_node': i.left_node if i.left_node else False,
+                'right_node': i.right_node if i.right_node else False,
+                'left_points': i.left_points,
+                'right_points': i.right_points,
+                'status': i.status,
+                'created': i.created,
+            })
 
         context['status'] = 1
+        context['tree'] = tree
 
         return JsonResponse(context)
 
@@ -83,8 +99,6 @@ class SetUserInBinaryAPIView(View):
     """
     Добавление пользователя в бинарное дерево
     ПАРАМЕТРЫ В BODY (JSON)
-    auto:
-        1 - Автоматическое постановка пользователя в систему
     parent:
         username - Логин родителя
     leg:
