@@ -7,6 +7,7 @@ from .models import (
     BinaryTree,
     BinaryPointsHistory,
     STATUS_CHOICES,
+    get_status_text,
 )
 from settings.models import Setting
 import json
@@ -292,6 +293,7 @@ class PointsHistoryAPIView(View):
 class StatusAPIView(View):
     """
     Список статусов пользователей бинара
+    БЕЗ ПАРАМЕТРОВ
     """
 
     def post(self, request, api_key):
@@ -305,10 +307,72 @@ class StatusAPIView(View):
         statuses_list = []
         for i in STATUS_CHOICES:
             statuses_list.append({
-                'id': i[0],
+                'id': int(i[0]),
                 'title': i[1],
             })
 
         context['status'] = True
         context['statuses'] = statuses_list
+        return JsonResponse(context)
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class ChangeStatusAPIView(View):
+    """
+    Смена статуса пользователя
+    ПАРАМЕТРЫ В BODY (JSON)
+    user:
+        username - имя пользователя
+    status_id:
+        numeric - id статуса
+    """
+
+    def post(self, request, api_key):
+        context = {}
+
+        if not is_valid_api_key(api_key):
+            context['status'] = False
+            context['message'] = TOKEN_NOT_VALID_MESSAGE
+            return JsonResponse(context)
+
+        parameters = get_parameters(self.request.body)
+        if not parameters:
+            return bad_request()
+
+        try:
+            status_id = int(parameters['status_id'])
+        except KeyError:
+            context['status'] = False
+            context['message'] = 'Параметр status_id является обязательным'
+            return JsonResponse(context)
+        except ValueError:
+            context['status'] = False
+            context['message'] = 'Параметр status_id должен быть числовым'
+            return JsonResponse(context)
+
+        if status_id not in [int(i[0]) for i in STATUS_CHOICES]:
+            context['status'] = False
+            context['message'] = 'Статуса с id={} не существует'.format(status_id)
+            return JsonResponse(context)
+
+        try:
+            username = parameters['user']
+            node = BinaryTree.objects.get(user=username)
+        except KeyError:
+            context['status'] = False
+            context['message'] = 'Параметр user является обязательным'
+            return JsonResponse(context)
+        except BinaryTree.DoesNotExist:
+            context['status'] = False
+            context['message'] = 'Пользователя {} не существует'.format(username)
+            return JsonResponse(context)
+
+        node.status = str(status_id)
+        node.save(update_fields=('status',))
+
+        context['status'] = True
+        context['message'] = 'Пользователю {} успешно присвоен статус {}'.format(
+            username,
+            get_status_text(status_id),
+        )
         return JsonResponse(context)

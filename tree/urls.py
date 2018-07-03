@@ -4,6 +4,7 @@ from .views import (
     GetTreeAPIView,
     PointsHistoryAPIView,
     StatusAPIView,
+    ChangeStatusAPIView,
 )
 
 
@@ -13,4 +14,5 @@ urlpatterns = [
     path('<str:api_key>/set-user-to-tree/', SetUserInBinaryAPIView.as_view(), name='set-user-to-tree'),
     path('<str:api_key>/get-points-history/', PointsHistoryAPIView.as_view(), name='get-points-history'),
     path('<str:api_key>/get-statuses/', StatusAPIView.as_view(), name='get-statuses'),
+    path('<str:api_key>/change-user-status/', ChangeStatusAPIView.as_view(), name='change-user-status'),
 ]

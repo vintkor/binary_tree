@@ -10,6 +10,13 @@ STATUS_CHOICES = (
 )
 
 
+def get_status_text(key):
+    for i in STATUS_CHOICES:
+        if i[0] == str(key):
+            return i[1]
+    return False
+
+
 class BinaryTree(MPTTModel):
     user = models.CharField(max_length=200, verbose_name='Пользователь', unique=True)
     parent = TreeForeignKey('self', null=True, blank=True, verbose_name='Родитель', db_index=True, on_delete=models.SET_NULL)
