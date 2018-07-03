@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52d395ea-b580-4c3e-8fbf-ed4a3a02aef3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tree/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/tree/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tree/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/tree/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/examle-tree-view.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -61,7 +58,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tree/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="502">
@@ -69,6 +66,15 @@
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="examle-tree-view.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/examle-tree-view.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1267">
+              <caret line="494" column="7" selection-start-line="494" selection-start-column="7" selection-end-line="494" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -99,6 +105,7 @@
         <option value="$PROJECT_DIR$/tree/urls.py" />
         <option value="$PROJECT_DIR$/settings/models.py" />
         <option value="$PROJECT_DIR$/tree/views.py" />
+        <option value="$PROJECT_DIR$/examle-tree-view.html" />
       </list>
     </option>
   </component>
@@ -126,16 +133,6 @@
             <path>
               <item name="binary_tree" type="b2602c69:ProjectViewProjectNode" />
               <item name="binary_tree" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="binary_tree" type="b2602c69:ProjectViewProjectNode" />
-              <item name="binary_tree" type="462c0819:PsiDirectoryNode" />
-              <item name="settings" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="binary_tree" type="b2602c69:ProjectViewProjectNode" />
-              <item name="binary_tree" type="462c0819:PsiDirectoryNode" />
-              <item name="tree" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -220,8 +217,8 @@
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="Python Console" order="11" weight="0.5" />
       <window_info anchor="bottom" id="Run" order="3" />
-      <window_info active="true" anchor="right" id="Terminal" order="5" visible="true" weight="0.38831478" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.08744038" />
+      <window_info anchor="right" id="Terminal" order="5" visible="true" weight="0.38831478" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.08744038" />
       <window_info anchor="bottom" id="Statistic" order="0" />
       <window_info anchor="right" id="Database" order="3" weight="0.3298887" />
       <window_info anchor="right" id="SciView" order="4" />
@@ -383,6 +380,13 @@
           <folding>
             <element signature="e#0#36#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examle-tree-view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1267">
+          <caret line="494" column="7" selection-start-line="494" selection-start-column="7" selection-end-line="494" selection-end-column="7" />
         </state>
       </provider>
     </entry>
