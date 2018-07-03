@@ -7,6 +7,8 @@ class Setting(models.Model):
     """
 
     api_secret_key = models.CharField(max_length=100, verbose_name='Секретный ключ для доступа по API')
+    tree_deep = models.PositiveSmallIntegerField(default=13)
+    pages_paginator = models.PositiveSmallIntegerField(default=100, verbose_name='Количество записей для пагинатора')
 
     class Meta:
         verbose_name_plural = 'Настройки'

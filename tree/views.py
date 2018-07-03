@@ -1,13 +1,19 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
-from django.views import View
+from django.views.generic import View
+from django.core.paginator import Paginator
 from .models import (
     BinaryTree,
+    BinaryPointsHistory,
 )
 from settings.models import Setting
 import json
 from .utils import SetPoints
+
+
+APP_SETTINGS = Setting.objects.first()
+TOKEN_NOT_VALID_MESSAGE = 'Не верный API токен'
 
 
 def is_valid_api_key(api_key):
@@ -16,7 +22,7 @@ def is_valid_api_key(api_key):
     :param api_key:
     :return: bool
     """
-    my_api_key = Setting.objects.first().api_secret_key
+    my_api_key = APP_SETTINGS.api_secret_key
     if my_api_key == api_key:
         return True
     return False
@@ -54,7 +60,7 @@ class GetTreeAPIView(View):
 
         if not is_valid_api_key(api_key):
             context['status'] = False
-            context['message'] = 'Не верный API токен'
+            context['message'] = TOKEN_NOT_VALID_MESSAGE
             return JsonResponse(context)
 
         parameters = get_parameters(self.request.body)
@@ -73,21 +79,30 @@ class GetTreeAPIView(View):
             return bad_request()
 
         tree = list()
-        nodes = node.get_descendants(include_self=True)
+        nodes = node.get_descendants(include_self=True).filter(level__lte=APP_SETTINGS.tree_deep)
 
         for i in nodes:
-            tree.append({
-                'id': i.id,
-                'user': i.user,
-                'parent': str(i.parent) if i.parent else False,
-                'level': i.level,
-                'left_node': i.left_node if i.left_node else False,
-                'right_node': i.right_node if i.right_node else False,
-                'left_points': i.left_points,
-                'right_points': i.right_points,
-                'status': i.status,
-                'created': i.created,
-            })
+            element = dict()
+            element['id'] = i.id
+            element['name'] = i.user
+            element['parentId'] = i.parent.id if i.parent else None
+            element['level'] = i.level
+            element['left_node'] = i.left_node if i.left_node else False
+            element['right_node'] = i.right_node if i.right_node else False
+            element['left_points'] = 'Баллы в левой ноге - {}'.format(i.left_points)
+            element['right_points'] = 'Баллы в правой ноге - {}'.format(i.right_points)
+            element['status'] = i.status
+            element['created'] = i.created
+
+            if node.left_node or node.right_node:
+                element['look_tree'] = "<a class='look_tree' href='#{}'><i class='fa fa-3x fa-chevron-down'></i></a>".format(i.user)
+            else:
+                element['look_tree'] = "<span class='hidden'>1</span>"
+
+            if i.level == APP_SETTINGS.tree_deep:
+                element['skip_children'] = True
+
+            tree.append(element)
 
         context['status'] = True
         context['tree'] = tree
@@ -116,7 +131,7 @@ class SetUserInBinaryAPIView(View):
 
         if not is_valid_api_key(api_key):
             context['status'] = False
-            context['message'] = 'Не верный API токен'
+            context['message'] = TOKEN_NOT_VALID_MESSAGE
             return JsonResponse(context)
 
         parameters = get_parameters(self.request.body)
@@ -177,5 +192,96 @@ class SetUserInBinaryAPIView(View):
 
         context['status'] = True
         context['message'] = 'Пользователь {} успешно добавлен в дерево'.format(new_user_name)
+
+        return JsonResponse(context)
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class PointsHistoryAPIView(View):
+    """
+    Получение истории начисления баллов
+    ПАРАМЕТРЫ В BODY (JSON)
+    user:
+        all - для всех пользователей
+        username - имя пользователя для которого нужно выгрузить историю
+    page:
+        int - номер страницы для пагинации
+    """
+
+    def post(self, request, api_key):
+        context = {}
+
+        if not is_valid_api_key(api_key):
+            context['status'] = False
+            context['message'] = TOKEN_NOT_VALID_MESSAGE
+            return JsonResponse(context)
+
+        parameters = get_parameters(self.request.body)
+        if not parameters:
+            return bad_request()
+
+        user = parameters.get('user')
+        page = parameters.get('page')
+
+        if page and isinstance(page, int):
+            pass
+        else:
+            context['status'] = False
+            context['message'] = 'Параметр page должен быть целым положительным числом'
+            return JsonResponse(context)
+
+        if not user:
+            context['status'] = False
+            context['message'] = 'Параметр user является обязательным'
+            return JsonResponse(context)
+
+        if user == 'all':
+            history = BinaryPointsHistory.objects.all()
+        else:
+            try:
+                tree_node = BinaryTree.objects.get(user=user)
+            except BinaryTree.DoesNotExist:
+                context['status'] = False
+                context['message'] = 'Пользователя {} не существует'.format(user)
+                return JsonResponse(context)
+
+            history = BinaryPointsHistory.objects.filter(tree_node=tree_node)
+
+        paginator = Paginator(history, APP_SETTINGS.pages_paginator)
+
+        if page > paginator.num_pages:
+            context['status'] = False
+            context['message'] = 'Страницы {} не существует'.format(page)
+            return JsonResponse(context)
+
+        context['status'] = True
+        context['count_items'] = paginator.count
+        context['count_pages'] = paginator.num_pages
+        context['current_page'] = page
+
+        history_list = []
+        paginator_page = paginator.page(page)
+
+        if paginator_page.has_next():
+            context['next_page'] = paginator_page.next_page_number()
+
+        if paginator_page.has_previous():
+            context['previous_page'] = paginator_page.previous_page_number()
+
+        for i in paginator_page:
+
+            history_dict = {
+                'username': i.tree_node.user,
+                'created': i.created,
+            }
+
+            if i.left_points:
+                history_dict['left_points'] = i.left_points
+            else:
+                history_dict['right_points'] = i.right_points
+
+            history_list.append(history_dict)
+
+        context['points_history'] = history_list
 
         return JsonResponse(context)
