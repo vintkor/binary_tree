@@ -51,7 +51,10 @@ def bad_request():
 class GetTreeAPIView(View):
     """
     url - hostname/api/<str:api_key>/get-tree/
+    method: POST
+
     Получение бинарного дерева
+
     ПАРАМЕТРЫ В BODY (JSON)
     root_node:
         root - вернуть всё дерево
@@ -150,7 +153,10 @@ class GetTreeAPIView(View):
 class SetUserInBinaryAPIView(View):
     """
     url - hostname/api/<str:api_key>/set-user-to-tree/
+    method: POST
+
     Добавление пользователя в бинарное дерево
+
     ПАРАМЕТРЫ В BODY (JSON)
     parent:
         username - Логин родителя
@@ -244,7 +250,10 @@ class SetUserInBinaryAPIView(View):
 class PointsHistoryAPIView(View):
     """
     url - hostname/api/<str:api_key>/get-points-history/
+    method: POST
+
     Получение истории начисления баллов
+
     ПАРАМЕТРЫ В BODY (JSON)
     user:
         all - для всех пользователей
@@ -357,7 +366,10 @@ class PointsHistoryAPIView(View):
 class StatusAPIView(View):
     """
     url - hostname/api/<str:api_key>/get-statuses/
+    method: POST
+
     Список статусов пользователей бинара
+
     БЕЗ ПАРАМЕТРОВ
 
     success response:
@@ -408,7 +420,10 @@ class StatusAPIView(View):
 class ChangeStatusAPIView(View):
     """
     url - hostname/api/<str:api_key>/change-user-status/
+    method: POST
+
     Смена статуса пользователя
+    
     ПАРАМЕТРЫ В BODY (JSON)
     user:
         username - имя пользователя

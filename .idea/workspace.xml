@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52d395ea-b580-4c3e-8fbf-ed4a3a02aef3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tree/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/tree/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -74,10 +73,15 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tree/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="518">
-              <caret line="421" column="9" selection-start-line="421" selection-start-column="9" selection-end-line="421" selection-end-column="9" />
+            <state relative-caret-position="426">
+              <caret line="425" column="4" selection-start-line="425" selection-start-column="4" selection-end-line="425" selection-end-column="4" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
+                <element signature="e#1148#2474#0" />
+                <element signature="e#3107#4783#0" />
+                <element signature="e#6295#6640#0" />
+                <element signature="e#9137#9595#0" />
+                <element signature="e#9890#10312#0" />
               </folding>
             </state>
           </provider>
@@ -259,6 +263,11 @@
           <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
+            <element signature="e#1148#2474#0" />
+            <element signature="e#3107#4783#0" />
+            <element signature="e#6295#6640#0" />
+            <element signature="e#9137#9595#0" />
+            <element signature="e#9890#10312#0" />
           </folding>
         </state>
       </provider>
@@ -296,6 +305,11 @@
           <caret line="65" column="16" lean-forward="true" selection-start-line="65" selection-start-column="16" selection-end-line="65" selection-end-column="16" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
+            <element signature="e#1148#2474#0" />
+            <element signature="e#3107#4783#0" />
+            <element signature="e#6295#6640#0" />
+            <element signature="e#9137#9595#0" />
+            <element signature="e#9890#10312#0" />
           </folding>
         </state>
       </provider>
@@ -394,10 +408,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tree/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="518">
-          <caret line="421" column="9" selection-start-line="421" selection-start-column="9" selection-end-line="421" selection-end-column="9" />
+        <state relative-caret-position="426">
+          <caret line="425" column="4" selection-start-line="425" selection-start-column="4" selection-end-line="425" selection-end-column="4" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
+            <element signature="e#1148#2474#0" />
+            <element signature="e#3107#4783#0" />
+            <element signature="e#6295#6640#0" />
+            <element signature="e#9137#9595#0" />
+            <element signature="e#9890#10312#0" />
           </folding>
         </state>
       </provider>
