@@ -6,6 +6,7 @@ from django.core.paginator import Paginator
 from .models import (
     BinaryTree,
     BinaryPointsHistory,
+    STATUS_CHOICES,
 )
 from settings.models import Setting
 import json
@@ -284,4 +285,30 @@ class PointsHistoryAPIView(View):
 
         context['points_history'] = history_list
 
+        return JsonResponse(context)
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class StatusAPIView(View):
+    """
+    Список статусов пользователей бинара
+    """
+
+    def post(self, request, api_key):
+        context = {}
+
+        if not is_valid_api_key(api_key):
+            context['status'] = False
+            context['message'] = TOKEN_NOT_VALID_MESSAGE
+            return JsonResponse(context)
+
+        statuses_list = []
+        for i in STATUS_CHOICES:
+            statuses_list.append({
+                'id': i[0],
+                'title': i[1],
+            })
+
+        context['status'] = True
+        context['statuses'] = statuses_list
         return JsonResponse(context)

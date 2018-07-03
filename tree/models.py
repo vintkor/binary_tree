@@ -49,7 +49,7 @@ class Reason(models.Model):
     """
     title = models.CharField(max_length=250, verbose_name='Заголовок')
     description = models.TextField(verbose_name='Описание')
-    code = models.PositiveSmallIntegerField()
+    code = models.PositiveSmallIntegerField(unique=True)
 
     class Meta:
         verbose_name = 'Основание для начисления или списания баллов'
