@@ -50,11 +50,45 @@ def bad_request():
 @method_decorator(csrf_exempt, name='dispatch')
 class GetTreeAPIView(View):
     """
+    url - hostname/api/<str:api_key>/get-tree/
     Получение бинарного дерева
     ПАРАМЕТРЫ В BODY (JSON)
     root_node:
         root - вернуть всё дерево
         username - вернуть дерево начиная с указаного пользователя
+
+    success response:
+        {
+            "status": true,
+            "tree": [
+                {
+                    "id": 1,
+                    "name": "root",
+                    "parentId": null,
+                    "level": 0,
+                    "left_node": 2,
+                    "right_node": 5,
+                    "left_points": "Баллы в левой ноге - 1950",
+                    "right_points": "Баллы в правой ноге - 0",
+                    "status": "2",
+                    "created": "2018-06-28T16:34:14.720",
+                    "look_tree": "<a class='look_tree' href='#root'><i class='fa fa-3x fa-chevron-down'></i></a>"
+                },
+                {
+                    "id": 5,
+                    "name": "mptt",
+                    "parentId": 1,
+                    "level": 1,
+                    "left_node": false,
+                    "right_node": false,
+                    "left_points": "Баллы в левой ноге - 0",
+                    "right_points": "Баллы в правой ноге - 0",
+                    "status": "1",
+                    "created": "2018-07-02T14:55:14.665",
+                    "look_tree": "<a class='look_tree' href='#mptt'><i class='fa fa-3x fa-chevron-down'></i></a>"
+                }
+            ]
+        }
     """
 
     def post(self, request, api_key):
@@ -115,6 +149,7 @@ class GetTreeAPIView(View):
 @method_decorator(csrf_exempt, name='dispatch')
 class SetUserInBinaryAPIView(View):
     """
+    url - hostname/api/<str:api_key>/set-user-to-tree/
     Добавление пользователя в бинарное дерево
     ПАРАМЕТРЫ В BODY (JSON)
     parent:
@@ -126,6 +161,13 @@ class SetUserInBinaryAPIView(View):
         string - Имя пользователя (уникальное)
     points:
         int - Сумма балов для присвоения по структуре вверх
+
+    success response:
+        {
+            "status": true,
+            "message": "Пользователь nikola успешно добавлен в дерево"
+        }
+
     """
 
     def post(self, request, api_key):
@@ -201,6 +243,7 @@ class SetUserInBinaryAPIView(View):
 @method_decorator(csrf_exempt, name='dispatch')
 class PointsHistoryAPIView(View):
     """
+    url - hostname/api/<str:api_key>/get-points-history/
     Получение истории начисления баллов
     ПАРАМЕТРЫ В BODY (JSON)
     user:
@@ -208,6 +251,27 @@ class PointsHistoryAPIView(View):
         username - имя пользователя для которого нужно выгрузить историю
     page:
         int - номер страницы для пагинации
+
+    success response:
+        {
+            "status": true,
+            "count_items": 123,
+            "count_pages": 7,
+            "current_page": 1,
+            "next_page": 2,
+            "points_history": [
+                {
+                    "username": "alena",
+                    "created": "2018-07-02T16:49:16.470",
+                    "right_points": 300
+                },
+                {
+                    "username": "zheka",
+                    "created": "2018-07-02T16:49:16.472",
+                    "right_points": 300
+                }
+            ]
+        }
     """
 
     def post(self, request, api_key):
@@ -292,8 +356,32 @@ class PointsHistoryAPIView(View):
 @method_decorator(csrf_exempt, name='dispatch')
 class StatusAPIView(View):
     """
+    url - hostname/api/<str:api_key>/get-statuses/
     Список статусов пользователей бинара
     БЕЗ ПАРАМЕТРОВ
+
+    success response:
+        {
+            "status": true,
+            "statuses": [
+                {
+                    "id": "1",
+                    "title": "Неактивный"
+                },
+                {
+                    "id": "2",
+                    "title": "Активный"
+                },
+                {
+                    "id": "3",
+                    "title": "Заморожен"
+                },
+                {
+                    "id": "4",
+                    "title": "Полное заполнение"
+                }
+            ]
+        }
     """
 
     def post(self, request, api_key):
@@ -319,12 +407,19 @@ class StatusAPIView(View):
 @method_decorator(csrf_exempt, name='dispatch')
 class ChangeStatusAPIView(View):
     """
+    url - hostname/api/<str:api_key>/change-user-status/
     Смена статуса пользователя
     ПАРАМЕТРЫ В BODY (JSON)
     user:
         username - имя пользователя
     status_id:
         numeric - id статуса
+
+    success response:
+        {
+            "status": true,
+            "message": "Пользователю root успешно присвоен статус Активный"
+        }
     """
 
     def post(self, request, api_key):
