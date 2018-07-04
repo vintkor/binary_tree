@@ -13,8 +13,6 @@ from settings.models import Setting
 import json
 from .utils import SetPoints
 
-
-APP_SETTINGS = Setting.objects.first()
 TOKEN_NOT_VALID_MESSAGE = 'Не верный API токен'
 
 
@@ -24,6 +22,7 @@ def is_valid_api_key(api_key):
     :param api_key:
     :return: bool
     """
+    APP_SETTINGS = Setting.objects.first()
     my_api_key = APP_SETTINGS.api_secret_key
     if my_api_key == api_key:
         return True
@@ -96,6 +95,7 @@ class GetTreeAPIView(View):
 
     def post(self, request, api_key):
         context = {}
+        APP_SETTINGS = Setting.objects.first()
 
         if not is_valid_api_key(api_key):
             context['status'] = False
@@ -285,6 +285,7 @@ class PointsHistoryAPIView(View):
 
     def post(self, request, api_key):
         context = {}
+        APP_SETTINGS = Setting.objects.first()
 
         if not is_valid_api_key(api_key):
             context['status'] = False
