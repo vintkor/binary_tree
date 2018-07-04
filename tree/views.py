@@ -423,7 +423,7 @@ class ChangeStatusAPIView(View):
     method: POST
 
     Смена статуса пользователя
-    
+
     ПАРАМЕТРЫ В BODY (JSON)
     user:
         username - имя пользователя
@@ -485,4 +485,52 @@ class ChangeStatusAPIView(View):
             username,
             get_status_text(status_id),
         )
+        return JsonResponse(context)
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class DeleteNodeAPIView(View):
+    """
+    url - hostname/api/<str:api_key>/delete-nodes/
+    method: POST
+
+    Удаление пользователей из бинарного дерева
+
+    ПАРАМЕТРЫ В BODY (JSON)
+    users:
+        [username] - имена пользователей с нижнего к верхнему (порядок важен)
+
+    """
+
+    def post(self, request, api_key):
+        context = {}
+
+        if not is_valid_api_key(api_key):
+            context['status'] = False
+            context['message'] = TOKEN_NOT_VALID_MESSAGE
+            return JsonResponse(context)
+
+        parameters = get_parameters(self.request.body)
+        if not parameters:
+            return bad_request()
+
+        nodes = parameters['users']
+        nodes_for_delete = []
+        if len(nodes) != BinaryTree.objects.filter(user__in=nodes).count():
+            context['status'] = False
+            context['message'] = 'Не все пользователи существуют'
+            return JsonResponse(context)
+        else:
+            for i in nodes:
+                nodes_for_delete.append(BinaryTree.objects.get(user=i))
+
+        from .utils import CleanTree
+
+        messages = []
+        for node in nodes_for_delete:
+            clear_tree = CleanTree(node)
+            messages.append(clear_tree.delete_node())
+
+        context['message'] = messages
+        context['status'] = True
         return JsonResponse(context)

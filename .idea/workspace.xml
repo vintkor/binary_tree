@@ -2,6 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52d395ea-b580-4c3e-8fbf-ed4a3a02aef3" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/binary_tree/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/binary_tree/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examle-tree-view.html" beforeDir="false" afterPath="$PROJECT_DIR$/tree/templates/tree/examle-tree-view.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tree/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/tree/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tree/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/tree/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tree/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/tree/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,43 +52,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tree/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="16" column="42" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="42" />
-              <folding>
-                <element signature="e#0#46#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tree/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tree/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="426">
-              <caret line="425" column="4" selection-start-line="425" selection-start-column="4" selection-end-line="425" selection-end-column="4" />
+            <state relative-caret-position="718">
+              <caret line="522" column="13" lean-forward="true" selection-start-line="522" selection-start-column="13" selection-end-line="522" selection-end-column="13" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
-                <element signature="e#1148#2474#0" />
                 <element signature="e#3107#4783#0" />
-                <element signature="e#6295#6640#0" />
-                <element signature="e#9137#9595#0" />
-                <element signature="e#9890#10312#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="utils.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tree/utils.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="52">
+              <caret line="104" column="11" selection-start-line="104" selection-start-column="11" selection-end-line="104" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="examle-tree-view.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tree/templates/tree/examle-tree-view.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="304">
+              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
             </state>
           </provider>
         </entry>
@@ -97,14 +93,16 @@
       <list>
         <option value="$PROJECT_DIR$/settings/admin.py" />
         <option value="$PROJECT_DIR$/tree/admin.py" />
-        <option value="$PROJECT_DIR$/binary_tree/settings.py" />
         <option value="$PROJECT_DIR$/binary_tree/urls.py" />
-        <option value="$PROJECT_DIR$/tree/utils.py" />
         <option value="$PROJECT_DIR$/settings/models.py" />
-        <option value="$PROJECT_DIR$/examle-tree-view.html" />
-        <option value="$PROJECT_DIR$/tree/urls.py" />
+        <option value="$PROJECT_DIR$/docs.txt" />
         <option value="$PROJECT_DIR$/tree/models.py" />
+        <option value="$PROJECT_DIR$/examle-tree-view.html" />
+        <option value="$PROJECT_DIR$/binary_tree/settings.py" />
+        <option value="$PROJECT_DIR$/tree/templates/tree/examle-tree-view.html" />
+        <option value="$PROJECT_DIR$/tree/urls.py" />
         <option value="$PROJECT_DIR$/tree/views.py" />
+        <option value="$PROJECT_DIR$/tree/utils.py" />
       </list>
     </option>
   </component>
@@ -138,6 +136,19 @@
               <item name="binary_tree" type="462c0819:PsiDirectoryNode" />
               <item name="tree" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="binary_tree" type="b2602c69:ProjectViewProjectNode" />
+              <item name="binary_tree" type="462c0819:PsiDirectoryNode" />
+              <item name="tree" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="binary_tree" type="b2602c69:ProjectViewProjectNode" />
+              <item name="binary_tree" type="462c0819:PsiDirectoryNode" />
+              <item name="tree" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="tree" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -146,12 +157,17 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="setti&#9;FILE&#9;file:///Users/vintkor/Desktop/work/binary_tree/binary_tree/binary_tree/settings.py" />
+    <property name="SearchEverywhereHistoryKey" value="sett&#9;FILE&#9;file:///Users/a1/Desktop/lessons_django/binary_tree/binary_tree/binary_tree/settings.py&#10;setti&#9;FILE&#9;file:///Users/a1/Desktop/lessons_django/binary_tree/binary_tree/binary_tree/settings.py" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="Sqlite (Xerial)" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tree/templates/tree" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -221,8 +237,8 @@
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="Python Console" order="11" weight="0.5" />
       <window_info anchor="bottom" id="Run" order="3" />
-      <window_info anchor="right" id="Terminal" order="5" visible="true" weight="0.38831478" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.08744038" />
+      <window_info active="true" anchor="right" id="Terminal" order="5" visible="true" weight="0.38831478" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.08744038" />
       <window_info anchor="bottom" id="Statistic" order="0" />
       <window_info anchor="right" id="Database" order="3" weight="0.3298887" />
       <window_info anchor="right" id="SciView" order="4" />
@@ -263,11 +279,7 @@
           <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
-            <element signature="e#1148#2474#0" />
             <element signature="e#3107#4783#0" />
-            <element signature="e#6295#6640#0" />
-            <element signature="e#9137#9595#0" />
-            <element signature="e#9890#10312#0" />
           </folding>
         </state>
       </provider>
@@ -305,11 +317,7 @@
           <caret line="65" column="16" lean-forward="true" selection-start-line="65" selection-start-column="16" selection-end-line="65" selection-end-column="16" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
-            <element signature="e#1148#2474#0" />
             <element signature="e#3107#4783#0" />
-            <element signature="e#6295#6640#0" />
-            <element signature="e#9137#9595#0" />
-            <element signature="e#9890#10312#0" />
           </folding>
         </state>
       </provider>
@@ -342,37 +350,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/binary_tree/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="70" column="63" selection-start-line="70" selection-start-column="62" selection-end-line="70" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/65c16f4b-7944-4b43-8210-f2c76ce06b17/console.sql">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7bd019e7-e1b8-4a97-882b-9cd1a9d3a767/console.sql">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/tree/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1056">
-          <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://7bd019e7-e1b8-4a97-882b-9cd1a9d3a767/schema/main/table/tree_binarytree">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examle-tree-view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11856">
-          <caret line="494" column="7" selection-start-line="494" selection-start-column="7" selection-end-line="494" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -386,38 +373,62 @@
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/tree/models.py">
+    <entry file="file://$PROJECT_DIR$/docs.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="3672">
+          <caret line="153" column="10" lean-forward="true" selection-start-line="153" selection-start-column="10" selection-end-line="153" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tree/templates/tree/examle-tree-view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tree/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="16" column="42" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="42" />
+        <state relative-caret-position="414">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
           <folding>
             <element signature="e#0#46#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tree/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/binary_tree/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="66" column="39" lean-forward="true" selection-start-line="66" selection-start-column="39" selection-end-line="66" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tree/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="425" column="4" selection-start-line="425" selection-start-column="4" selection-end-line="425" selection-end-column="4" />
+        <state relative-caret-position="718">
+          <caret line="522" column="13" lean-forward="true" selection-start-line="522" selection-start-column="13" selection-end-line="522" selection-end-column="13" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
-            <element signature="e#1148#2474#0" />
             <element signature="e#3107#4783#0" />
-            <element signature="e#6295#6640#0" />
-            <element signature="e#9137#9595#0" />
-            <element signature="e#9890#10312#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tree/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="104" column="11" selection-start-line="104" selection-start-column="11" selection-end-line="104" selection-end-column="11" />
         </state>
       </provider>
     </entry>

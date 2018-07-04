@@ -64,7 +64,7 @@ except:
     TEMPLATES = [
         {
             'BACKEND': 'django.template.backends.django.DjangoTemplates',
-            'DIRS': ['templates'],
+            'DIRS': ['tree/templates'],
             'APP_DIRS': True,
             'OPTIONS': {
                 'context_processors': [
