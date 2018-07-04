@@ -31,7 +31,7 @@ def is_valid_api_key(api_key):
 
 def get_parameters(request):
     try:
-        parameters = json.loads(request, encoding='UTF-8')
+        parameters = json.loads(request.decode('utf-8'))
     except:
         return False
 
